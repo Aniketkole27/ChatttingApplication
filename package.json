@@ -1,0 +1,15 @@
+{
+  "name": "index.js",
+  "version": "1.0.0",
+  "description": "",
+  "main": "clientSide.js",
+  "scripts": {
+    "start": "node serverSide.js"
+  },
+  "author": "Aniketkole",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.2",
+    "socket.io": "^4.8.1"
+  }
+}

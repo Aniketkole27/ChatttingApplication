@@ -1,0 +1,98 @@
+div {
+    /* position: relative;
+            position:fixed;
+            top: 300px;
+            display: flex;
+            justify-content: center;
+            align-items: end; */
+    position: fixed;
+    bottom: 20px;
+    /* 20px from the bottom of the viewport */
+    left: 40%;
+    transform: translateX(-40%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+h1 {
+    text-align: center;
+}
+
+input {
+    width: 30vw;
+    height: 5vh;
+    font-size: 1rem;
+    padding: 5px 10px;
+    outline: none;
+    /* position: fixed; */
+}
+
+button {
+
+    width: 6rem;
+    height: 3.5rem;
+    font-size: 1rem;
+    cursor: pointer;
+    position: fixed
+}
+
+ul {
+    position: relative;
+    left: 3%;
+    overflow-y: scroll; 
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    list-style-type: none; 
+    height: 60vh;
+	width: 35vw;
+	margin: auto;
+	max-width: 95%;
+}
+
+.user{
+    background-color: #74baff91;
+    color: white;
+    border-radius: 5px;
+    padding: 0px 10px;
+    margin: 0.1px;
+    max-width: 50%;
+    word-wrap: break-word;
+    color: rgb(0, 0, 0);
+    /* margin-left: auto; */
+}
+
+/* ::-webkit-scrollbar-tracks
+{
+	border: 5px solid white;
+	background-color: #b2bec3;
+} */
+
+
+::-webkit-scrollbar
+{
+	width: 5px;
+	background-color: #dfe6e9;
+}
+
+
+::-webkit-scrollbar-thumb {
+    background-color: #74baffd4;
+    border-radius: 10px;
+}
+
+li {
+    padding: 5px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+li span {
+    font-size: 0.8rem;
+    color: #786868;
+    position: relative;
+    margin-left: 20px;
+    top: 0.70rem;
+}
