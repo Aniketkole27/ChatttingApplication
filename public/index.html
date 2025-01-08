@@ -9,17 +9,34 @@
 </head>
 
 <body>
+    <div class="contaner"> 
     <h1>Chatting Application</h1>
+        <button id="leave">leave -></button>
 
+        <div class="roomMembers">
+            <h2>Room Members</h2>
+            <li>Aniket</li>
+            <li>john</li>
+            <li>rahul</li>
+            <li>shubham</li>
+        </div>
+    
     <ul id="messages">
-        <li>Aniker </li>
+
+        <p class='user' style ="background-color: rgb(237, 231, 231);";> john 
+         <br>
+          <strong style='color:black;'>Hey welcome there...</strong> 
+        </p>   
     </ul>
-    <div>
+
+    <div class="inputBox">
         <form id="form">
             <input type="text" id="input" autocomplete="off" placeholder="Enter massages" />
             <button id="btn">Send</button>
         </form>
     </div>
+
+</div>
 </body>
 <script src="/socket.io/socket.io.js"></script>
 <script src="./clientSide.js"></script>
