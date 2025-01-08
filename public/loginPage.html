@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #f1f1f1;
+        }
+
+        .choise {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+            /* background-color: DodgerBlue; */
+        }
+
+        .custom-select  select{
+            background-color: gainsboro;
+            color: black;
+            padding: 2px 20px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            width: 200px;
+            font-size: 20px;
+        }
+        #btn {
+            background-color: dodgerblue;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 20px;
+            cursor: pointer;
+            border: none;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div class="choise">
+        <h1>Choose chatting Room</h1>
+
+        <div class="custom-select" style="width: 200px;">
+        <select name="" id="">
+            <option value="java">java</option>
+            <option value="c++">c++</option>
+            <option value="javascript">javascript</option>
+            <option value="Python">Python</option>
+        </select>
+        </div>
+        
+        <a href="./index.html">
+            <button id="btn">join the Chat Room</button>
+        </a>
+    </div>
+    
+    <script>
+        let input = document.querySelector('input');
+        let select = document.querySelector('select');
+        let btn = document.querySelector('#btn');
+
+        btn.addEventListener('click',()=>{
+            let choise = select.value;
+            console.log(choise);
+        })
+
+    </script>
+
+</body>
+
+</html>
