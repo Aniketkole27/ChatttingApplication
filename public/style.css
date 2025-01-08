@@ -1,19 +1,26 @@
-div {
-    /* position: relative;
-            position:fixed;
-            top: 300px;
-            display: flex;
-            justify-content: center;
-            align-items: end; */
+.inputBox {
     position: fixed;
     bottom: 20px;
-    /* 20px from the bottom of the viewport */
     left: 40%;
     transform: translateX(-40%);
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
+}
+.contaner{
+    position: relative;
+}
+
+.roomMembers{
+    position: absolute;
+    right: 75%;
+}
+
+.choise{
+    margin-right: auto;
+    background-color: #786868;
+    display: inline-flexbox;
 }
 
 h1 {
@@ -22,11 +29,23 @@ h1 {
 
 input {
     width: 30vw;
-    height: 5vh;
+    height: 3rem;
     font-size: 1rem;
-    padding: 5px 10px;
+    padding: 2px 8px;
     outline: none;
+    margin-right: 10px;
     /* position: fixed; */
+}
+
+#leave {
+    width: 6rem;
+    height: 2.5rem;
+    font-size: 1rem;
+    cursor: pointer;
+    position: fixed;
+    right: 29%;
+    top: 8%;
+    bottom: 20px;
 }
 
 button {
@@ -50,6 +69,7 @@ ul {
 	width: 35vw;
 	margin: auto;
 	max-width: 95%;
+    border-left: 2px solid #74baff;
 }
 
 .user{
@@ -64,11 +84,11 @@ ul {
     /* margin-left: auto; */
 }
 
-/* ::-webkit-scrollbar-tracks
+::-webkit-scrollbar-tracks
 {
 	border: 5px solid white;
 	background-color: #b2bec3;
-} */
+}
 
 
 ::-webkit-scrollbar
