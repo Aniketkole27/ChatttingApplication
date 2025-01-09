@@ -15,32 +15,60 @@
         }
 
         .choise {
+            position: relative;
+            width: 30%;
+            left: 35%;
+            top: 5rem;
             display: flex;
+            border-radius: 20px;
             flex-direction: column;
             align-items: center;
-            height: 100vh;
-            /* background-color: DodgerBlue; */
+            justify-content: center;
+            background-color: gainsboro;
+            border: 1px solid black;
+            margin: 0;
+            padding: 0;
         }
 
-        .custom-select  select{
+        .custom-select {
+            height: 20rem;
+            width: 20rem;
+
+        }
+
+        .custom-select select {
             background-color: gainsboro;
             color: black;
             padding: 2px 20px;
             border-radius: 5px;
-            margin-bottom: 20px;
+            margin-bottom: 2rem;
             width: 200px;
+            height: 3.5rem;
             font-size: 20px;
         }
+
         #btn {
             background-color: dodgerblue;
             color: white;
-            padding: 10px 20px;
+            padding: 2px 8px;
             border-radius: 5px;
             font-size: 20px;
             cursor: pointer;
             border: none;
+            height: 3.5rem;
+            width: 200px;
         }
 
+        #inputField {
+            position: relative;
+            margin-bottom: 2rem;
+            font-size: 1.35rem;
+            padding: 2px 8px;
+            outline: none;
+            margin-right: 10px;
+            height: 3rem;
+            width: 90%;
+        }
     </style>
 </head>
 
@@ -50,29 +78,37 @@
         <h1>Choose chatting Room</h1>
 
         <div class="custom-select" style="width: 200px;">
-        <select name="" id="">
-            <option value="java">java</option>
-            <option value="c++">c++</option>
-            <option value="javascript">javascript</option>
-            <option value="Python">Python</option>
-        </select>
+
+            <input type="text" id="inputField" value="" placeholder="Enter your name ..">
+            <select name="" id="chatRoomSelect">
+                <option value="java">java</option>
+                <option value="C++">c++</option>
+                <option value="javascript">javascript</option>
+                <option value="Python">Python</option>
+            </select>
+
+            <a href="./index.html">
+                <button id="btn1">Join Chat Room</button>
+            </a>
         </div>
-        
-        <a href="./index.html">
-            <button id="btn">join the Chat Room</button>
-        </a>
     </div>
-    
+
     <script>
-        let input = document.querySelector('input');
-        let select = document.querySelector('select');
-        let btn = document.querySelector('#btn');
+         document.getElementById("btn1").addEventListener("click", function () {
+            const name = document.getElementById("inputField").value.trim();
+            const chatRoom = document.getElementById("chatRoomSelect").value;
 
-        btn.addEventListener('click',()=>{
-            let choise = select.value;
-            console.log(choise);
-        })
+            if (name === "") {
+                alert("Please enter your name!");
+                return;
+            }
 
+            // Construct the URL with query parameters
+            const url = `/?name=${encodeURIComponent(name)}&room=${encodeURIComponent(chatRoom)}`;
+
+            // Redirect to the URL
+            window.location.href = url;
+        });
     </script>
 
 </body>
