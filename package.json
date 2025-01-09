@@ -1,9 +1,10 @@
 {
-  "name": "index.js",
+  "name": "client",
   "version": "1.0.0",
-  "description": "",
-  "main": "clientSide.js",
+  "description": "A simple web socket client",
+  "main": "serverSide.js",
   "scripts": {
+    "run": "node serverSide.js",
     "start": "node serverSide.js"
   },
   "author": "Aniketkole",
