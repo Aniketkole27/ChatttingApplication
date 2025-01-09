@@ -5,68 +5,63 @@ const ul = document.querySelector("#messages");
 const input = document.getElementById('input');
 const btn = document.getElementById('btn');
 
-
+ // Emit an event to join a specific room
 socket.emit('join-room', 'room1');
 
-// 3rd check for the name 'message' and append it 
+// Listen for incoming messages from the server
 socket.on("message", (message) => {
-    // let li = document.createElement('li');
-    // li.textContent = message;
-    // ul.appendChild(li);
-    addMessage(message, getCurrentDateTime());
+    console.log(message);
+    addMessage(message.user, message.text, getCurrentDateTime());
 });
 
-// start exicuting 
+socket.on('userData', (data) => {
+    let p = document.createElement('p');
+    p.innerHTML = `User: ${data.name} has joined the room ${data.room}`;
+    ul.appendChild(p);
+})
+
+
+
+// start exicuting when the button is clicked
 btn.addEventListener('click', (e) => {
     e.preventDefault();
     const message = input.value.trim();
     if (message) {
-        // 1st emit the message  
+        // Emit message to server
         socket.emit("chat-message", message);
-        // console.log(message);
         input.value = "";
     }
 })
 
-
+// Listen for notification of a new person joining
 socket.on('newPerson', (message) => {
     console.log(message);
 })
-// socket.on('broadcast_message', (data) => {
-//     console.log('Broadcasted Message:', data.message);
-// });
 
+// Listen for confirmation of joining a room
 socket.on('joined', (data) => {
     console.log(`${data.message} in this room ${data.room}`)
 })
 
-function addMessage(message, time) {
+  
+function addMessage(name, message, time) {
+    // Append message to the chat
     if (message) {
-
-        // let li = document.createElement('li');
-        // let span = document.createElement('span');
-        // span.textContent = time;
-        // li.textContent = message;
-        // li.appendChild(span);
-        // ul.appendChild(li);
-
         const p = document.createElement("p");
-
         p.innerHTML = `
-             <p class='user'>john <span style="font-size: 0.8rem; color: black;">(${time})</span> <br>
-            <strong style='color:black;'>${message}</strong> </p> `;
+        <p class='user'>${name} <span style="font-size: 0.8rem; color: black; margin-left:7px;">${time}</span> <br>
+        <strong style='color:black;'>${message}</strong> </p> `;
         ul.appendChild(p);
-
+        
         // Scroll to bottom
         ul.scrollTop = ul.scrollHeight;
-
-
     }
     // console.log(getCurrentDateTime());
 }
 
-
+// Get current time in HH:MM AM/PM format
 function getCurrentDateTime() {
+   
     const now = new Date();
     let hours = now.getHours();
     const minutes = now.getMinutes().toString().padStart(2, '0');
@@ -77,7 +72,7 @@ function getCurrentDateTime() {
     hours = hours % 12;
     hours = hours ? hours : 12; // Adjust for 12:00 AM/PM case
 
-    return `${hours.toString().padStart(2, '0')}:${minutes} ${period}`;
+    return `${hours.toString()}:${minutes} ${period}`;
 }
 
 
