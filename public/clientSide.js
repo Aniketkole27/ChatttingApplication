@@ -4,9 +4,8 @@ const socket = io();
 const ul = document.querySelector("#messages");
 const input = document.getElementById('input');
 const btn = document.getElementById('btn');
+const welcomeText = document.querySelector('.userwelcome');
 
- // Emit an event to join a specific room
-socket.emit('join-room', 'room1');
 
 // Listen for incoming messages from the server
 socket.on("message", (message) => {
@@ -14,12 +13,23 @@ socket.on("message", (message) => {
     addMessage(message.user, message.text, getCurrentDateTime());
 });
 
-socket.on('userData', (data) => {
-    let p = document.createElement('p');
-    p.innerHTML = `User: ${data.name} has joined the room ${data.room}`;
-    ul.appendChild(p);
-})
+const queryPara = new URLSearchParams(window.location.search);
+const userName = queryPara.get("name");
+const room = queryPara.get("room");
 
+switch(room.toLowerCase()){
+    case 'java': socket.emit('java-room',{userName,room});
+    break;
+
+    case 'c++': socket.emit('c++-room',{userName,room});
+    break;
+
+    case 'javascript' : socket.emit('javascript-room',{userName,room});
+    break;
+    
+    case 'python' : socket.emit('python-room',{userName,room});
+    break;
+}
 
 
 // start exicuting when the button is clicked
@@ -28,10 +38,33 @@ btn.addEventListener('click', (e) => {
     const message = input.value.trim();
     if (message) {
         // Emit message to server
-        socket.emit("chat-message", message);
+        socket.emit("chat-message",{userName,message});
         input.value = "";
     }
 })
+
+socket.on('updata-Member', (data) => {
+    // data.preventDefault();
+    updataFunction(data);
+})
+
+const updataFunction = (data) => {
+    const newUser = document.querySelector('.members');
+    let li = document.createElement('li');
+    console.log("i am in updata function")
+    li.innerText = data;
+    newUser.append(li);  
+}
+
+const updataUser = (data)=>{
+    let p = document.createElement('p');
+    p.innerHTML = `<p>New user <strong> ${data.userName} </strong> joined the <strong> ${data.room} </strong> room.</p>`;
+    p.style.marginBottom = '10px';
+    p.style.backgroundColor = 'lightgray';
+    p.classList.add('user');
+    welcomeText.appendChild(p);
+
+}
 
 // Listen for notification of a new person joining
 socket.on('newPerson', (message) => {
@@ -40,10 +73,19 @@ socket.on('newPerson', (message) => {
 
 // Listen for confirmation of joining a room
 socket.on('joined', (data) => {
-    console.log(`${data.message} in this room ${data.room}`)
+    updataUser(data);
 })
 
+
+socket.on('private-chat', (data)=>{
+    let p = document.createElement('p');
+    console.log("This is private chat data", data);
+    p.innerHTML =  `<p style='color:black;'> Hi <strong> ${data.userName} </strong> Welcome to the <strong> ${data.room} </strong> room.</p>`;
+    p.classList.add('user');
+    welcomeText.appendChild(p);
+})
   
+
 function addMessage(name, message, time) {
     // Append message to the chat
     if (message) {
@@ -56,7 +98,6 @@ function addMessage(name, message, time) {
         // Scroll to bottom
         ul.scrollTop = ul.scrollHeight;
     }
-    // console.log(getCurrentDateTime());
 }
 
 // Get current time in HH:MM AM/PM format
