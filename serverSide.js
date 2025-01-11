@@ -1,6 +1,6 @@
-const express = require('express'); 
-const app = express();   
-const PORT  = 9000;      
+const express = require('express');
+const app = express();
+const PORT = 9000;
 const http = require('http');
 const path = require('path');
 const server = http.createServer(app);
@@ -11,52 +11,51 @@ const { sharedFunction } = require('./public/shared');
 // const name = require('./public/main');
 
 // connect to the database
+const member = {};
+
 io.on('connection', (socket) => {
     console.log('a user connected');
-    // console.log(sharedFunction());
     socket.broadcast.emit('newPerson', "new Person is added !");
 
-    socket.on('join-room',(room)=>{
-        socket.join(room);
-        socket.broadcast.emit('joined',({message: "new user is add",room}));
-    })
-
-
-  // Handle chat messages from clients 
-    socket.on('chat-message', (msg)=>{
-        // Emit the message to all clients
-        io.emit('message', sharedFunction('Aniket',msg));
-    })
-
-    function getData(name, room) {
-        console.log(`Emitting User Data: Name = ${name}, Room = ${room}`);
-                
-            io.emit('userData', { name, room });
+    socket.on('java-room', (room) => {
+        member[socket.id] = {userName : room.userName, room : room.room};
+        socket.join(room.room);
+        io.emit('updata-Member', room.userName);
         
-    }
+        socket.emit('private-chat',member[socket.id]);
+        socket.broadcast.emit('joined', member[socket.id]);
+    })
 
+
+    // Handle chat messages from clients 
+    // let text = '';
+    socket.on('chat-message', (msg) => {
+        // Emit the message to all clients 
+        io.emit('message', sharedFunction(msg.userName,msg.message));
+
+    })
 })
 
 
 // Serve the login page on the root route
 app.get('/', (req, res) => {
-    const { name, room } = req.query; // Capture query parameters
-
-    if(name=== undefined || room === undefined){
-        
-    }
-    else{
-        console.log(`Name: ${name}, Room: ${room}`);
-        getData(name, room);
-    }
-   
+    const { name, room } = req.query;
+    // getData()
     res.sendFile(path.join(__dirname, 'public', 'loginPage.html'));
-    // res.sendFile(path.resolve('./public/loginPage.html'));
 
-});
+    // res.sendFile(path.resolve('./public/loginPage.html'));
+}); 
 
 // app.use(express.static(path.resolve('./public')));  
 app.use(express.static(path.join(__dirname, 'public')));
+
+
+const getData = () =>{
+    console.log(`Emitting User Data: Name = ${name}, Room = ${room}`);
+    io.emit('userData', { name, room });
+}
+
+
 
 
 // Start the server on port 9000
