@@ -87,30 +87,33 @@
                 <option value="Python">Python</option>
             </select>
 
-            <a href="./index.html">
+            <!-- <a href="./index.html"> -->
                 <button id="btn1">Join Chat Room</button>
-            </a>
+            <!-- </a> -->
         </div>
     </div>
 
     <script>
-         document.getElementById("btn1").addEventListener("click", function () {
-            const name = document.getElementById("inputField").value.trim();
-            const chatRoom = document.getElementById("chatRoomSelect").value;
+        const btn = document.getElementById("btn1");
+      btn.addEventListener("click", () => {
+    const name = document.getElementById("inputField").value.trim();
+    const chatRoom = document.getElementById("chatRoomSelect").value;
 
-            if (name === "") {
-                alert("Please enter your name!");
-                return;
-            }
+    if (name === "") {
+        alert("Please enter your name!");
+        return;
+    }
 
-            // Construct the URL with query parameters
-            const url = `/?name=${encodeURIComponent(name)}&room=${encodeURIComponent(chatRoom)}`;
+    // Construct the new URL with query parameters
+    const url = `/index.html?name=${encodeURIComponent(name)}&room=${encodeURIComponent(chatRoom)}`;
 
-            // Redirect to the URL
-            window.location.href = url;
-        });
+    // Open the new page in a new tab
+    window.location.href = url;
+    // window.open(url,);
+});
+
     </script>
 
 </body>
 
-</html>
+</html>s
