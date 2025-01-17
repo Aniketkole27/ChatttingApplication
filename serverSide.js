@@ -15,7 +15,7 @@ const member = {};
 
 io.on('connection', (socket) => {
     console.log('a user connected');
-    socket.broadcast.emit('newPerson', "new Person is added !");
+    // socket.broadcast.emit('newPerson', "new Person is added !");
 
     socket.on('java-room', (room) => {
         member[socket.id] = {userName : room.userName, room : room.room};
