@@ -1,3 +1,9 @@
+/* * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+} */
+
 .inputBox {
     position: fixed;
     bottom: 20px;
@@ -86,6 +92,11 @@ ul {
     word-wrap: break-word;
     color: rgb(0, 0, 0);
     /* margin-left: auto; */
+}
+
+p.user {
+    margin: 0 !important; /* Forces the margin to 0 */
+    outline: none !important; /* Forces removal of outline */
 }
 
 ::-webkit-scrollbar-tracks
