@@ -51,38 +51,38 @@ socket.on('updata-Member', (data) => {
 const updataFunction = (data) => {
     const newUser = document.querySelector('.members');
     let li = document.createElement('li');
-    console.log("i am in updata function")
+    // console.log("i am in updata function")
     li.innerText = data;
     newUser.append(li);  
 }
 
-const updataUser = (data)=>{
+const notifyUsers = (data)=>{
     let p = document.createElement('p');
     p.innerHTML = `<p>New user <strong> ${data.userName} </strong> joined the <strong> ${data.room} </strong> room.</p>`;
     p.style.marginBottom = '10px';
     p.style.backgroundColor = 'lightgray';
     p.classList.add('user');
-    welcomeText.appendChild(p);
-
+    // p.style.margin = '0px';
+    // p.style.outline = 'none';
+    ul.append(p);
 }
 
 // Listen for notification of a new person joining
-socket.on('newPerson', (message) => {
-    console.log(message);
-})
+// socket.on('newPerson', (message) => {
+//     console.log(message);
+// })
 
 // Listen for confirmation of joining a room
 socket.on('joined', (data) => {
-    updataUser(data);
+    notifyUsers(data);
 })
 
 
 socket.on('private-chat', (data)=>{
     let p = document.createElement('p');
-    console.log("This is private chat data", data);
     p.innerHTML =  `<p style='color:black;'> Hi <strong> ${data.userName} </strong> Welcome to the <strong> ${data.room} </strong> room.</p>`;
     p.classList.add('user');
-    welcomeText.appendChild(p);
+    welcomeText.append(p);
 })
   
 
