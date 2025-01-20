@@ -4,6 +4,11 @@
     box-sizing: border-box;
 } */
 
+body{
+    font-family: "Lohit Marathi", Arial, "Droid Serif", "sans-serif" !important;
+}
+
+
 .inputBox {
     position: fixed;
     bottom: 20px;
