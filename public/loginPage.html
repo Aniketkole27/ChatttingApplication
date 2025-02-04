@@ -7,47 +7,38 @@
     <title>Document</title>
     <style>
         body {
-            font-family: Arial;
-            margin: 0;
-            padding: 0;
+            font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
             box-sizing: border-box;
             background-color: #f1f1f1;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
 
         .choise {
-            position: relative;
-            width: 30%;
-            left: 35%;
-            top: 5rem;
-            display: flex;
-            border-radius: 20px;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            background-color: gainsboro;
             border: 1px solid black;
-            margin: 0;
-            padding: 0;
+            padding: 20px;
+            border-radius: 10px;
         }
 
         .custom-select {
-            height: 20rem;
-            width: 20rem;
-
+            width: 35rem;
         }
 
-        .custom-select select {
+        .custom-select select,option {
             background-color: gainsboro;
             color: black;
             padding: 2px 20px;
             border-radius: 5px;
             margin-bottom: 2rem;
-            width: 200px;
+            width: 19rem;
             height: 3.5rem;
             font-size: 20px;
         }
 
-        #btn {
+        #btn1 {
             background-color: dodgerblue;
             color: white;
             padding: 2px 8px;
@@ -75,28 +66,26 @@
 <body>
 
     <div class="choise">
-        <h1>Choose chatting Room</h1>
+        <h1>Choose Chatting Room</h1>
 
-        <div class="custom-select" style="width: 200px;">
+        <div class="custom-select">
 
             <input type="text" id="inputField" value="" placeholder="Enter your name ..">
             <select name="" id="chatRoomSelect">
-                <option value="java">java</option>
-                <option value="C++">c++</option>
-                <option value="javascript">javascript</option>
+                <option value="java">Java</option>
+                <option value="C++">C++</option>
+                <option value="javascript">Javascript</option>
                 <option value="Python">Python</option>
             </select>
 
-            <!-- <a href="./index.html"> -->
-                <button id="btn1">Join Chat Room</button>
-            <!-- </a> -->
+               <button id="btn1">Join Chat Room</button>
         </div>
     </div>
 
     <script>
-        const btn = document.getElementById("btn1");
-        
-      btn.addEventListener("click", () => {
+
+    const btn = document.getElementById("btn1");    
+    btn.addEventListener("click", () => {
     const name = document.getElementById("inputField").value.trim();
     const chatRoom = document.getElementById("chatRoomSelect").value;
 
@@ -117,4 +106,4 @@
 
 </body>
 
-</html>s
+</html>
